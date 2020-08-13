@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://harvesthq.github.io/chosen/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <form method="POST" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <input type="radio" name="isGuide">
+        <p>Are you a Guide</p>
+        <div id="output"></div>
+        <select data-placeholder="Choose tags ..." name="interests" multiple class="chosen-select" value="{{chosen_interests}}">
+            <!-- <option value="Engineering">Engineering</option>
+            <option value="Carpentry">Carpentry</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electical">Electrical</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="HVAC">HVAC</option> -->
+            {% for i in interests %}
+            {% for c in chosen_interests %}
+            {% if i == c %}
+                <option value="{{i.id}}" selected>{{i.name}}</option>
+            {% else %}
+                <option value="{{i.id}}">{{i.name}}</option>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+</body>
+<script>
+    document.getElementById('output').innerHTML = location.search;
+    $(".chosen-select").chosen();
+</script>
+</html>
