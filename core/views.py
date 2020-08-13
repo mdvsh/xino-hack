@@ -23,7 +23,7 @@ from django.shortcuts import reverse
 from django.shortcuts import redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 class Homepage(TemplateView):
     template_name = 'home.html'
@@ -112,3 +112,32 @@ def activate_account(request, uidb64, token):
         return HttpResponse('Your account has been made successfully <br> <a href="/login">Login</a>')
     else:
         return HttpResponse('Activation link is invalid!')
+
+@login_required(login_url='/login/')
+def profile(request):
+    if request.method=="GET":
+        interests = InterestsActivities.objects.all()
+        customUser = CustomUser.objects.get(user=request.user)
+        chosen_interests = customUser.interests.all()
+        context = {
+            'interests':interests,
+            'chosen_interests':chosen_interests
+        }
+        return render(request,  'profile.html', context)
+    elif request.method=="POST":
+        isGuideRadio = request.POST.get('isGuide')
+        print(type(isGuideRadio))
+        if isGuideRadio == "on":
+            isGuide = True
+        elif isGuideRadio == None:
+            isGuide = False
+        interests = request.POST.getlist('interests')
+        customUser = CustomUser.objects.get(user=request.user)
+        interestObjects = []
+        for i in interests:
+            interestObject = InterestsActivities.objects.get(id=i)
+            interestObjects.append(interestObject)
+        customUser.interests.set(interestObjects)
+        print(customUser.interests)
+        url = '/profile/'
+        return redirect(url)
