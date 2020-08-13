@@ -1,0 +1,33 @@
+{% load static %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'home' %}">Home</a>
+                <a class="navbar-item" href="">Jobs</a>
+            </div>
+
+            <div class="navbar-end">
+
+                <div class="navbar-item">
+                    <div class="buttons">
+                    {% if not request.user.is_authenticated %}
+                    <a class="button is-warning is-rounded" href="{% url 'login' %}">Log in</a>
+                    <a class="button is-info is-rounded" href="{% url 'registration' %}"><strong>Join Us</strong></a>
+                    {% comment %} <a class="button is-small is-warning is-rounded">(Admin) Dash</a> {% endcomment %}
+                    {% else %}
+                    <a class="button is-warning is-rounded" href="{% url 'logout' %}">Log Out</a>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

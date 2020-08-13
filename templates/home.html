@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
     <title>Trivy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 </head>
 <body>
+    {% comment %} {% include 'nav.html' %} {% endcomment %}
     <div class="block">
         <span></span>
         <span></span>
@@ -25,5 +27,23 @@
             Trivy provides the personalised guide experience that you've been missing for so long.
         </p>
     </div>
+    <div class="img-wrapper">
+        <img
+            src="{% static 'images/undraw_adventure_4hum.svg' %}"
+            alt=""
+        />
+    </div>
+    <script>
+        // The following code is based off a toggle menu by @Bradcomp
+        // source: https://gist.github.com/Bradcomp/a9ef2ef322a8e8017443b626208999c1
+        (function() {
+            var burger = document.querySelector('.burger');
+            var menu = document.querySelector('#'+burger.dataset.target);
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        })();
+    </script>
 </body>
 </html> 

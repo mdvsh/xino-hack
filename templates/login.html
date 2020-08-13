@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    {{ message }}
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <input type="email" name="email" placeholder="Email" />
