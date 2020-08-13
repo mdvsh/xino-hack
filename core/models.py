@@ -19,7 +19,7 @@ class InterestsActivities(models.Model):
 class CustomUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     isGuide = models.BooleanField(default=False)
-    place_of_stay = models.ForeignKey(Places, on_delete=models.CASCADE, related_name="guide_play_of_stay")
+    place_of_stay = models.ForeignKey(Places, on_delete=models.CASCADE, related_name="guide_play_of_stay", null=True)
     searching_for = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)
     interestCount = models.IntegerField(default=0)
     places_of_interest = models.ManyToManyField(Places, related_name='user_places_of_interest')

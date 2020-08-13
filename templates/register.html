@@ -1,12 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{ message }}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivy</title>
+    <link rel="stylesheet" href="{% static 'css/logreg.css' %}" />
+  </head>
+  <body>
+    {% comment %} {{ message }}
     <form action="{% url 'registration' %}" method="POST">
         {% csrf_token %}
         <input type="text" name="first_name" placeholder="First Name" />
@@ -14,6 +16,90 @@
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="*********" />
         <input type="submit">
-    </form>
+    </form> {% endcomment %}
+    {% if message %}<p>{{ message }}{% endif %}
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form
+          action="{% url 'registration' %}"
+          id="contact-form"
+          class="main-form"
+          role="form"
+          method="POST"
+        >
+                {% csrf_token %}
+
+          <h3>Create Account</h3>
+
+          <div class="form-group">
+            <label>
+              <input
+                type="text" name="first_name"
+                id="form_email"
+                class="my_form-control"
+                required
+              />
+              <small class="my_place">FRist Nmae</small>
+            </label>
+          </div>
+
+
+          <div class="form-group">
+            <label>
+              <input
+                type="text" name="last_name"
+                id="form_email"
+                class="my_form-control"
+                required
+              />
+              <small class="my_place">Last Nmae</small>
+            </label>
+          </div>
+            <div class="form-group">
+                <label>
+                    <input type="email" name="email" placeholder="Email" class="my_form-control"/>
+                                  <small class="my_place">EMail</small>
+
+                </label>
+            </div>
+
+          <div class="form-group">
+            <label>
+              <input
+                type="password" name="password"
+                id="form_password"
+                class="my_form-control"
+                required
+              />
+              <small class="my_place">Password</small>
+            </label>
+          </div>
+
+
+
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary mt-2 mx-auto" style="padding-top:15px">
+              SIGN IN
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-right">
+            <h1>Have an Account ?</h1>
+            <p>
+            Amazing, click the button below to go back to you User Dashboard.
+            </p>
+            <button class="ghost" id="signUp"><a href="{% url 'login' %}" style="color:white">Sign-In</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
 </body>
 </html>

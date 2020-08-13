@@ -149,3 +149,8 @@ body {
 .navbar {
   background: transparent !important;
 }
+.navbar-item {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}

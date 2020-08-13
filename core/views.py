@@ -123,6 +123,7 @@ def profile(request):
             'interests':interests,
             'chosen_interests':chosen_interests
         }
+        print(interests)
         return render(request,  'profile.html', context)
     elif request.method=="POST":
         isGuideRadio = request.POST.get('isGuide')
